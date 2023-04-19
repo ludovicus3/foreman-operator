@@ -1,0 +1,12 @@
+apiVersion: foreman.theforeman.org/v1alpha1
+kind: Foreman
+metadata:
+  labels:
+    app.kubernetes.io/name: foreman
+    app.kubernetes.io/instance: foreman-sample
+    app.kubernetes.io/part-of: foreman-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: foreman-operator
+  name: foreman-sample
+spec:
+  # TODO(user): Add fields here

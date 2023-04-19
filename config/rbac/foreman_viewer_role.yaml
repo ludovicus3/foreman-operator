@@ -1,0 +1,27 @@
+# permissions for end users to view foremen.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: foreman-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: foreman-operator
+    app.kubernetes.io/part-of: foreman-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: foreman-viewer-role
+rules:
+- apiGroups:
+  - foreman.theforeman.org
+  resources:
+  - foremen
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - foreman.theforeman.org
+  resources:
+  - foremen/status
+  verbs:
+  - get
