@@ -17,11 +17,28 @@ limitations under the License.
 package v1alpha1
 
 import (
+	certmanagerv1 "github.com/jetstack/cert-manager/pkg/apis/certmanager/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 // ForemanSpec defines the desired state of Foreman
 type ForemanSpec struct {
+	// +operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Foreman Certificate Configuration"
+	Certs ForemanCerts `json:"certs,omitempty"`
+}
+
+// ForemanCerts defines the configuration for generating internal certs
+type ForemanCerts struct {
+	// +operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Certificate Subject"
+	Subject certmanagerv1.X509Subject `json:"subject:omitempty"`
+
+	// +kubebuilder:default:="876000h"
+	// +operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Certificate Duration"
+	Duration metav1.Duration `json:"duration,omitempty"`
+
+	// +kubebuilder:default:="175200h"
+	// +operator-sdk:csv:customresourcedefinitions:type=spec,displayName="CA Certificate Duration"
+	CADuration metav1.Duration `json:"caDuration,omitempty"`
 }
 
 // ForemanStatus defines the observed state of Foreman
