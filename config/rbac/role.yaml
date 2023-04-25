@@ -1,0 +1,33 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - foreman.theforeman.org
+  resources:
+  - foremen
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - foreman.theforeman.org
+  resources:
+  - foremen/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - foreman.theforeman.org
+  resources:
+  - foremen/status
+  verbs:
+  - get
+  - patch
+  - update
